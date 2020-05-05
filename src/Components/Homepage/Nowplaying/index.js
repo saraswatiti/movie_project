@@ -27,7 +27,6 @@ const Nowplaying = ({ movies }) => {
           <div className="clearfix mt-5 mb-2">
             <h3 className="float-left">Now playing</h3>
             <Link to="/" className="float-right text-uppercase">
-              {" "}
               see all
             </Link>
           </div>
@@ -36,15 +35,17 @@ const Nowplaying = ({ movies }) => {
               return (
                 <Fragment>
                   <Col>
-                    <Card>
-                      <Card.Img
-                        variant="top"
-                        src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                      />
-                      <Card.Body>
-                        <h3>{movie.title}</h3>
-                      </Card.Body>
-                    </Card>
+                    <Link to={`/movies/${movie.id}`}>
+                      <Card key={movie.id}>
+                        <Card.Img
+                          variant="top"
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        />
+                        <Card.Body>
+                          <h3>{movie.title}</h3>
+                        </Card.Body>
+                      </Card>
+                    </Link>
                   </Col>
                 </Fragment>
               );
