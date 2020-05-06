@@ -11,16 +11,17 @@ import { SinglepageWrap, Release } from "./style";
 const SinglePage = (props) => {
   const [SingleMovie, setSingleMovie] = useState({});
   useEffect(() => {
+    // const id = props.match.params.id;
     Axios.get(
       `
       https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=8dcc478bc8ac0518dd5d7b133c69b56b&language=en-US`
     )
       .then((res) => setSingleMovie(res.data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [props.match.params.id]);
 
   return (
-    <SinglepageWrap>
+    <SinglepageWrap key={SingleMovie.id}>
       <Container className="mt-5">
         <Row>
           <Col md="6">
