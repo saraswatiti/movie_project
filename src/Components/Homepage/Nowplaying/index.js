@@ -35,17 +35,17 @@ const Nowplaying = ({ movies }) => {
               return (
                 <Fragment>
                   <Col>
-                    {/* <Link to={`/movies/${movie.id}`}> */}
-                    <Card key={movie.id}>
-                      <Card.Img
-                        variant="top"
-                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      />
-                      <Card.Body>
-                        <h3>{movie.title}</h3>
-                      </Card.Body>
-                    </Card>
-                    {/* </Link> */}
+                    <Link to={`/movies/${movie.id}`}>
+                      <Card key={movie.id}>
+                        <Card.Img
+                          variant="top"
+                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        />
+                        <Card.Body>
+                          <h3>{movie.title}</h3>
+                        </Card.Body>
+                      </Card>
+                    </Link>
                   </Col>
                 </Fragment>
               );

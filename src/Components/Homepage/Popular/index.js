@@ -35,17 +35,17 @@ const Popular = ({ states }) => {
               return (
                 <Fragment>
                   <Col>
-                    {/* <Link to={`/movies/${state.id}`}> */}
-                    <Card>
-                      <Card.Img
-                        variant="top"
-                        src={`https://image.tmdb.org/t/p/w500/${state.poster_path}`}
-                      />
-                      <Card.Body>
-                        <h3>{state.title}</h3>
-                      </Card.Body>
-                    </Card>
-                    {/* </Link> */}
+                    <Link to={`/movies/${state.id}`}>
+                      <Card>
+                        <Card.Img
+                          variant="top"
+                          src={`https://image.tmdb.org/t/p/w500/${state.poster_path}`}
+                        />
+                        <Card.Body>
+                          <h3>{state.title}</h3>
+                        </Card.Body>
+                      </Card>
+                    </Link>
                   </Col>
                 </Fragment>
               );
