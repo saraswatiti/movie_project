@@ -33,7 +33,7 @@ const Popular = ({ states }) => {
           <Slider {...settings}>
             {states.map((state) => {
               return (
-                <Fragment>
+                <Fragment key={state.id}>
                   <Col>
                     <Link to={`/movies/${state.id}`}>
                       <Card>

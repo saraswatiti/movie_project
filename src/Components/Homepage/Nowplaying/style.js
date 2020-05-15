@@ -2,8 +2,15 @@ import style from "styled-components";
 
 export const BannerWrapper = style.div`
 h3{
+    color:#000;
    font-family: "Lora", serif; 
    font-size: 1.3rem;
+}
+h3:hover{
+    color:#FBB124;
+}
+a:hover{
+    text-decoration:none;
 }
 .slick-arrow{
     background-color:#FBB124;

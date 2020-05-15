@@ -33,7 +33,7 @@ const Nowplaying = ({ movies }) => {
           <Slider {...settings}>
             {movies.map((movie) => {
               return (
-                <Fragment>
+                <Fragment key={movie.id}>
                   <Col>
                     <Link to={`/movies/${movie.id}`}>
                       <Card key={movie.id}>
