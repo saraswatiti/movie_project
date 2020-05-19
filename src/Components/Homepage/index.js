@@ -13,6 +13,7 @@ const Homepege = (props) => {
   const [nowPlaying, setnowPlaying] = useState([]);
   const [popular, setPopular] = useState([]);
   const [topRate, settopRate] = useState([]);
+  const [NowplayGrid, setNowplayGrid] = useState([]);
   useEffect(() => {
     getAllMovies();
   }, []);
@@ -33,6 +34,7 @@ const Homepege = (props) => {
     setnowPlaying(datas[0].data.results);
     setPopular(datas[1].data.results);
     settopRate(datas[2].data.results);
+    setNowplayGrid(datas[0].data.results);
   };
 
   return (

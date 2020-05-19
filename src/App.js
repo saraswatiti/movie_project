@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import Header from "./Components/Header";
 import { CubeGrid } from "styled-loaders-react";
 import Footer from "./Components/Footer";
+import Nowplaygrid from "./Components/Pages/Nowplaygrid";
 const Homepage = React.lazy(() => import("./Components/Homepage"));
 const SinglePage = React.lazy(() => import("./Components/SinglePage"));
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={Homepage} />
               <Route path="/movies/:id" component={SinglePage} />
+              <Route path="/pages/Nowplaygrid" component={Nowplaygrid} />
             </Switch>
           </React.Suspense>
           <Footer />

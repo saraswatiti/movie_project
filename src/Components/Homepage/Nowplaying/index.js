@@ -26,7 +26,10 @@ const Nowplaying = ({ movies }) => {
         <Container>
           <div className="clearfix mt-5 mb-2">
             <h3 className="float-left">Now playing</h3>
-            <Link to="/" className="float-right text-uppercase">
+            <Link
+              to="/pages/Nowplaygrid"
+              className="float-right text-uppercase"
+            >
               see all
             </Link>
           </div>
