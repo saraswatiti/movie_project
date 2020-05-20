@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Row, Card, Col } from "react-bootstrap";
+import { Container, Row, Card, Col, Figure } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -37,10 +37,12 @@ const Popular = ({ states }) => {
                   <Col>
                     <Link to={`/movies/${state.id}`}>
                       <Card>
-                        <Card.Img
-                          variant="top"
-                          src={`https://image.tmdb.org/t/p/w500/${state.poster_path}`}
-                        />
+                        <Figure>
+                          <Card.Img
+                            variant="top"
+                            src={`https://image.tmdb.org/t/p/w500/${state.poster_path}`}
+                          />
+                        </Figure>
                         <Card.Body>
                           <h3>{state.title}</h3>
                         </Card.Body>

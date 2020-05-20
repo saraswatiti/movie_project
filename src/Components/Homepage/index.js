@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import style from "styled-components";
+import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import axios from "axios";
 import Nowplaying from "./Nowplaying";
 import Popular from "./Popular";
@@ -18,16 +19,15 @@ const Homepege = (props) => {
     getAllMovies();
   }, []);
   const getAllMovies = async () => {
-    const apikey = "8dcc478bc8ac0518dd5d7b133c69b56b";
     const datas = await axios.all([
       axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&language=en-US&page=1`
+        `${tmdb_api_url}/movie/now_playing?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
       axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&language=en-US&page=1`
+        `${tmdb_api_url}/movie/popular?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
       axios.get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${apikey}&language=en-US&page=1`
+        `${tmdb_api_url}/movie/top_rated?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
     ]);
     console.log(datas[1].data.results);

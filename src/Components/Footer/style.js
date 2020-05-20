@@ -5,4 +5,12 @@ export const Copyright = style.div`
     color:#fff;
     text-align:center;
     padding:20px;
+    a{
+        text-decoration:none;
+        margin-left:5px;
+        color:#FBB124;
+    }
+    a:hover{
+        opacity:0.9;
+    }
 `;

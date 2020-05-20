@@ -1,20 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BannerWrapper } from "../../Homepage/Nowplaying/style";
 import Axios from "axios";
+import { DefaultPegination } from "./style";
+import { tmdb_api_url, tmdb_api_key } from "../../../../src/config";
+import Pagination from "../../Pagination";
 /**
  * @author
  * @function Nowplaygrid
  **/
 
 const Nowplaygrid = ({ Props }) => {
-  const [movieLists, setmovieLists] = useState([]);
+  const [movieLists, setMovieLists] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   useEffect(() => {
     Axios.get(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=8dcc478bc8ac0518dd5d7b133c69b56b&language=en-US&page=1`
-    ).then((res) => setmovieLists(res.data.results));
-  }, []);
+      `${tmdb_api_url}/movie/now_playing?api_key=${tmdb_api_key}&language=en-US&page=${currentPage}`
+    )
+      .then((res) => {
+        console.log(res.data);
+        setTotalPages(res.data.total_pages);
+        setMovieLists(res.data.results);
+      })
+      .catch((err) => console.error(err));
+  }, [currentPage]);
+  const nextHandler = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const preHandler = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   return (
     <BannerWrapper>
       <Container className="mt-5">
@@ -24,7 +45,7 @@ const Nowplaygrid = ({ Props }) => {
         <Row>
           {movieLists.map((movieList) => {
             return (
-              <Col key={movieList.id} md="4" className="mb-2">
+              <Col key={movieList.id} md="3" className="mb-3">
                 <Link to={`/movies/${movieList.id}`}>
                   <Card>
                     <Card.Img
@@ -40,11 +61,16 @@ const Nowplaygrid = ({ Props }) => {
             );
           })}
         </Row>
-        <div className="clearfix mt-5 mb-2">
-          <Link to="/" className="float-right text-uppercase">
-            Next
-          </Link>
-        </div>
+        <DefaultPegination className="clearfix mt-5 mb-2">
+          <Button onClick={preHandler}>Prev</Button>
+          <Button onClick={nextHandler}>Next</Button>
+        </DefaultPegination>
+        {movieLists.length > 0 && (
+          <Pagination
+            totalPages={totalPages}
+
+          />
+        )}
       </Container>
     </BannerWrapper>
   );

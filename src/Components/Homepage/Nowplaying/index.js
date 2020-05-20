@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Row, Card, Col } from "react-bootstrap";
+import { Container, Row, Card, Col, Figure } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,7 +25,7 @@ const Nowplaying = ({ movies }) => {
       <BannerWrapper>
         <Container>
           <div className="clearfix mt-5 mb-2">
-            <h3 className="float-left">Now playing</h3>
+            <h2 className="float-left">Now playing</h2>
             <Link
               to="/pages/Nowplaygrid"
               className="float-right text-uppercase"
@@ -40,10 +40,12 @@ const Nowplaying = ({ movies }) => {
                   <Col>
                     <Link to={`/movies/${movie.id}`}>
                       <Card key={movie.id}>
-                        <Card.Img
-                          variant="top"
-                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                        />
+                        <Figure>
+                          <Card.Img
+                            variant="top"
+                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                          />
+                        </Figure>
                         <Card.Body>
                           <h3>{movie.title}</h3>
                         </Card.Body>

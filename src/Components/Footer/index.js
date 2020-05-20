@@ -1,5 +1,6 @@
 import React from "react";
 import { Copyright } from "./style";
+import { Link } from "react-router-dom";
 
 /**
  * @author
@@ -9,7 +10,10 @@ import { Copyright } from "./style";
 const Footer = (props) => {
   return (
     <div>
-      <Copyright>@CopyRight 2020</Copyright>
+      <Copyright>
+        Made by
+        <Link to="https://github.com/saraswatiti">Saraswati Timsina</Link>
+      </Copyright>
     </div>
   );
 };

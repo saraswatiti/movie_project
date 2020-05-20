@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
+import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import { Container, Row, Col } from "react-bootstrap";
 import { FcRating, FcLike } from "react-icons/fc";
 import { SinglepageWrap, Release } from "./style";
@@ -11,10 +12,9 @@ import { SinglepageWrap, Release } from "./style";
 const SinglePage = (props) => {
   const [SingleMovie, setSingleMovie] = useState({});
   useEffect(() => {
-    // const id = props.match.params.id;
     Axios.get(
       `
-      https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=8dcc478bc8ac0518dd5d7b133c69b56b&language=en-US`
+      ${tmdb_api_url}/movie/${props.match.params.id}?api_key=${tmdb_api_key}&language=en-US`
     )
       .then((res) => setSingleMovie(res.data))
       .catch((err) => console.error(err));
