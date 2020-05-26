@@ -31,10 +31,17 @@ const Nowplaygrid = ({ Props }) => {
       setCurrentPage(currentPage + 1);
     }
   };
+
   const preHandler = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+    } else {
+      alert("this is first page Please click the Next button");
     }
+  };
+
+  const pageItem = (rangs) => {
+    setCurrentPage(rangs);
   };
   return (
     <BannerWrapper>
@@ -68,7 +75,8 @@ const Nowplaygrid = ({ Props }) => {
         {movieLists.length > 0 && (
           <Pagination
             totalPages={totalPages}
-
+            currentPage={currentPage}
+            pageItem={pageItem}
           />
         )}
       </Container>

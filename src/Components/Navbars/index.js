@@ -1,22 +1,32 @@
-import React, { Fragment } from "react";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Container,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import React, { Fragment, useState, useEffect } from "react";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navwrapper } from "./style";
 import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { tmdb_api_url, tmdb_api_key } from "../../config";
+import Search from "../Search";
+import axios from "axios";
 /**
  * @author
  * @function Navbars
  **/
 
 const Navbars = (props) => {
+  const [SearchIteams, setSearchIteams] = useState();
+
+  const submitHandle = (evt) => {
+    evt.preventDefault();
+    axios
+      .get(
+        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${SearchIteams}`
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
+  };
+  const inputHandle = (evt) => {
+    setSearchIteams(evt.target.value);
+  };
+
   return (
     <Fragment>
       <Navwrapper>
@@ -27,15 +37,7 @@ const Navbars = (props) => {
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Form inline>
-                <FaSearch />
-                <FormControl
-                  type="text"
-                  placeholder="Search"
-                  className=" mr-sm-2"
-                />
-                {/* <Button type="submit">Submit</Button> */}
-              </Form>
+              <Search submitHandle={submitHandle} inputHandle={inputHandle} />
               <Nav className="ml-auto">
                 <Link to="/" className="nav-link">
                   Home
