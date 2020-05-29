@@ -34,15 +34,13 @@ const Pagination = ({ totalPages, pageItem, currentPage }) => {
 
   return (
     <ul className="pagination">
-      {rangeWithDot.map(
-        (rangeWithDot = (i) => (
-          <li key={i} className="page-item">
-            <button onClick={() => pageItem(i)} className="page-link">
-              {i}
-            </button>
-          </li>
-        ))
-      )}
+      {rangeWithDot.map((i) => (
+        <li key={i} className="page-item">
+          <button onClick={() => pageItem(i)} className="page-link">
+            {i}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 };

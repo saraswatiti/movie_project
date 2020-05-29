@@ -4,6 +4,8 @@ import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import axios from "axios";
 import Nowplaying from "./Nowplaying";
 import Popular from "./Popular";
+import MoviesLists from "../Commons/MoviesLists";
+import { Row, Container } from "react-bootstrap";
 
 /**
  * @author
@@ -39,8 +41,12 @@ const Homepege = (props) => {
 
   return (
     <Fragment>
-      <Nowplaying movies={nowPlaying} />
-      <Popular states={popular} />
+      <Container>
+        <Nowplaying movies={nowPlaying} />
+        <Popular states={popular} />
+
+        <MoviesLists moviesItems={topRate} />
+      </Container>
     </Fragment>
   );
 };

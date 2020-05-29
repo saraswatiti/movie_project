@@ -40,8 +40,8 @@ const Nowplaygrid = ({ Props }) => {
     }
   };
 
-  const pageItem = (rangs) => {
-    setCurrentPage(rangs);
+  const pageItem = (rangeWithDot) => {
+    setCurrentPage(rangeWithDot);
   };
   return (
     <BannerWrapper>

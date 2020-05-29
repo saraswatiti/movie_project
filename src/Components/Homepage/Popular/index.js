@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import { Container, Row, Card, Col, Figure } from "react-bootstrap";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Container } from "react-bootstrap";
+
 import { BannerWrapper } from "../Nowplaying/style";
 import { Link } from "react-router-dom";
+import MoviesSlider from "../../Commons/MoviesSlider";
 
 /**
  * @author
@@ -12,14 +11,6 @@ import { Link } from "react-router-dom";
  **/
 
 const Popular = ({ states }) => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrow: true,
-  };
   return (
     <Fragment>
       <BannerWrapper>
@@ -30,29 +21,7 @@ const Popular = ({ states }) => {
               see all
             </Link>
           </div>
-          <Slider {...settings}>
-            {states.map((state) => {
-              return (
-                <Fragment key={state.id}>
-                  <Col>
-                    <Link to={`/movies/${state.id}`}>
-                      <Card>
-                        <Figure>
-                          <Card.Img
-                            variant="top"
-                            src={`https://image.tmdb.org/t/p/w500/${state.poster_path}`}
-                          />
-                        </Figure>
-                        <Card.Body>
-                          <h3>{state.title}</h3>
-                        </Card.Body>
-                      </Card>
-                    </Link>
-                  </Col>
-                </Fragment>
-              );
-            })}
-          </Slider>
+          <MoviesSlider movies={states} />
         </Container>
       </BannerWrapper>
     </Fragment>

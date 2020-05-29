@@ -6,6 +6,8 @@ import { CubeGrid } from "styled-loaders-react";
 import Footer from "./Components/Footer";
 import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 import Nowplaygrid from "./Components/Pages/Nowplaygrid";
+import MoviesLists from "./Components/Commons/MoviesLists";
+import SearchResult from "./Components/Pages/SearchResult";
 const Homepage = React.lazy(() => import("./Components/Homepage"));
 const SinglePage = React.lazy(() => import("./Components/SinglePage"));
 function App() {
@@ -19,7 +21,10 @@ function App() {
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/movies/:id" component={SinglePage} />
-            <Route path="/pages/Nowplaygrid" component={Nowplaygrid} />
+
+            {/* <Route path="/Commons/MoviesLists" component={MoviesLists} /> */}
+            <Route path="/pages/nowplay_grid" component={Nowplaygrid} />
+            <Route path="/pages/search_result" component={SearchResult} />
           </Switch>
         </React.Suspense>
         <Footer />

@@ -2,29 +2,39 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navwrapper } from "./style";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
+import MoviesLists from "../Commons/MoviesLists";
 /**
  * @author
  * @function Navbars
  **/
 
 const Navbars = (props) => {
-  const [SearchIteams, setSearchIteams] = useState();
+  const [SearchIteams, setSearchIteams] = useState([]);
+  const [searchkey, setSearchKey] = useState();
 
   const submitHandle = (evt) => {
     evt.preventDefault();
     axios
       .get(
-        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${SearchIteams}`
+        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${searchkey}`
       )
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        setSearchIteams(res.data.results);
+      })
+      // .then((res) => {
+      //   // setSearchIteams(res.data.results)
+      //   console.log(res.data);
+      //   return <Redirect push to="/pages/search_result" />;
+      // })
       .catch((err) => console.error(err));
   };
+
   const inputHandle = (evt) => {
-    setSearchIteams(evt.target.value);
+    setSearchKey(evt.target.value);
   };
 
   return (
@@ -38,6 +48,7 @@ const Navbars = (props) => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Search submitHandle={submitHandle} inputHandle={inputHandle} />
+
               <Nav className="ml-auto">
                 <Link to="/" className="nav-link">
                   Home
@@ -63,6 +74,7 @@ const Navbars = (props) => {
           </Navbar>
         </Container>
       </Navwrapper>
+      <MoviesLists moviesItems={SearchIteams} />
     </Fragment>
   );
 };
