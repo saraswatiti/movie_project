@@ -1,2 +1,2 @@
 .App{display:block;position:relative}.App,.loading{width:100%;height:100%}.loading{position:absolute;top:170px;background-color:#000}.AnyClassForContainer{position:fixed;right:-100px;bottom:150px;transition:right .5s;cursor:pointer;background-color:#fbb124!important;font-size:0;padding:0;text-align:center;line-height:28px;border-radius:100%;transition:all .67s ease-in-out;box-shadow:0 2px 3px rgba(0,0,0,.2)}.AnyClassForContainer:focus{outline:0}.AnyClassForContainer:hover{background-color:#000!important;transition:all .67s ease-in-out}.AnyClassForContainer svg{width:14px;fill:#fff}.AnyClassForTransition{right:20px}
-/*# sourceMappingURL=main.5d959e97.chunk.css.map */
+/*# sourceMappingURL=main.ff216e2a.chunk.css.map */
