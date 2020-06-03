@@ -41,3 +41,6 @@
 .AnyClassForTransition {
   right: 20px;
 }
+.col {
+  display: flex;
+}

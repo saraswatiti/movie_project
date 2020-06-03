@@ -1,35 +1,53 @@
-import React, { Fragment } from "react";
-import { Container, Row, Card, Col, Figure } from "react-bootstrap";
-
-import { BannerWrapper } from "./style";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import MoviesLists from "../../Commons/MoviesLists";
-import MoviesSlider from "../../Commons/MoviesSlider";
-import MoviesItem from "../../Commons/MoviesItem";
+import { tmdb_api_key, tmdb_api_url } from "./../../../config";
+import Wrapper from "../../Wrapper";
 
 /**
  * @author
  * @function Nowplaying
  **/
 
-const Nowplaying = ({ movies }) => {
+const Nowplaying = (props) => {
+  const [movieLists, setMovieLists] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  useEffect(() => {
+    axios
+      .get(
+        `${tmdb_api_url}/movie/now_playing?api_key=${tmdb_api_key}&language=en-US&page=${currentPage}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setTotalPages(res.data.total_pages);
+        setMovieLists(res.data.results);
+      })
+      .catch((err) => console.error(err));
+  }, [currentPage]);
+  const nextHandler = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const preHandler = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else {
+      alert("this is first page Please click the Next button");
+    }
+  };
+
+  const pageItem = (rangeWithDot) => {
+    setCurrentPage(rangeWithDot);
+  };
   return (
-    <Fragment>
-      <BannerWrapper>
-        <Container>
-          <div className="clearfix mt-5 mb-2">
-            <h2 className="float-left">Now playing</h2>
-            <Link
-              to={{ pathname: "/commons/MoviesLists", movies: { movies } }}
-              className="float-right text-uppercase"
-            >
-              see all
-            </Link>
-          </div>
-          <MoviesSlider movies={movies} />
-        </Container>
-      </BannerWrapper>
-    </Fragment>
+    <Wrapper {...props}>
+      <div className="mb-5 mt-5">
+        <MoviesLists moviesItems={movieLists} />
+      </div>
+    </Wrapper>
   );
 };
 

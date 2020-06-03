@@ -2,10 +2,12 @@ import React, { useState, useEffect, Fragment } from "react";
 import style from "styled-components";
 import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import axios from "axios";
-import Nowplaying from "./Nowplaying";
-import Popular from "./Popular";
 import MoviesLists from "../Commons/MoviesLists";
 import { Row, Container } from "react-bootstrap";
+import Wrapper from "../Wrapper";
+import MoviesSlider from "../Commons/MoviesSlider";
+import { BannerWrapper } from "./Nowplaying/style";
+import { Link } from "react-router-dom";
 
 /**
  * @author
@@ -40,14 +42,28 @@ const Homepege = (props) => {
   };
 
   return (
-    <Fragment>
-      <Container>
-        <Nowplaying movies={nowPlaying} />
-        <Popular states={popular} />
+    <Wrapper {...props}>
+      <BannerWrapper>
+        <Container>
+          <div className="clearfix mt-5 mb-2">
+            <h2 className="float-left">Now playing</h2>
+            <Link to="/nowplaying" className="float-right text-uppercase">
+              see all
+            </Link>
+          </div>
+          <MoviesSlider movies={nowPlaying} />
+          <div className="clearfix mt-5 mb-2">
+            <h2 className="float-left">Now Popular</h2>
+            <Link to="/" className="float-right text-uppercase">
+              see all
+            </Link>
+          </div>
+          <MoviesSlider movies={popular} />
 
-        <MoviesLists moviesItems={topRate} />
-      </Container>
-    </Fragment>
+          <MoviesLists moviesItems={topRate} />
+        </Container>
+      </BannerWrapper>
+    </Wrapper>
   );
 };
 

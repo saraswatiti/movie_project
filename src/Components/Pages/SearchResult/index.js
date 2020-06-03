@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import MoviesLists from "../../Commons/MoviesLists";
-import { SearchConsumer } from "../../../Context";
+import Wrapper from "../../Wrapper";
 
 /**
  * @author
@@ -8,15 +8,15 @@ import { SearchConsumer } from "../../../Context";
  **/
 
 const SearchResult = (props) => {
-  console.log("hi");
-  return (
-    <SearchConsumer>
-      {(data) => {
-        console.log(data);
+  const [query, setQuery] = useState();
 
-        return <MoviesLists moviesItems={data} />;
-      }}
-    </SearchConsumer>
+  console.log(props);
+  return (
+    <Wrapper {...props}>
+      <div className="mb-5 mt-5">
+        <MoviesLists moviesItems={props.location.state.moviesItems} />
+      </div>
+    </Wrapper>
   );
 };
 

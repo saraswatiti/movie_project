@@ -9,7 +9,7 @@ import Navbars from "../Navbars";
 const Header = (props) => {
   return (
     <div className="main-header">
-      <Navbars />
+      <Navbars {...props} />
     </div>
   );
 };
