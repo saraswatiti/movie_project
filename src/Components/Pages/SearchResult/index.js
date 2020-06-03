@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import MoviesLists from "../../Commons/MoviesLists";
+import { SearchConsumer } from "../../../Context";
 
 /**
  * @author
@@ -7,10 +8,15 @@ import MoviesLists from "../../Commons/MoviesLists";
  **/
 
 const SearchResult = (props) => {
-  console.log(props);
-
+  console.log("hi");
   return (
-    <Fragment>{/* <MoviesLists moviesItems={SearchResult} /> */}</Fragment>
+    <SearchConsumer>
+      {(data) => {
+        console.log(data);
+
+        return <MoviesLists moviesItems={data} />;
+      }}
+    </SearchConsumer>
   );
 };
 

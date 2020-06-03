@@ -6,13 +6,14 @@ import { Link, Redirect } from "react-router-dom";
 import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
-import MoviesLists from "../Commons/MoviesLists";
+import { SearchProvider } from "./../../Context";
 /**
  * @author
  * @function Navbars
  **/
 
 const Navbars = (props) => {
+  console.log(props);
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
 
@@ -23,22 +24,22 @@ const Navbars = (props) => {
         `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${searchkey}`
       )
       .then((res) => {
-        setSearchIteams(res.data.results);
+        window.location.href = "http://localhost:3000/#/search";
+        // props.history.push({
+        //   pathname: "/search",
+        //   search: `query=${searchkey}`,
+        //   state: { SearchIteams: res.data.results },
+        // });
       })
-      // .then((res) => {
-      //   // setSearchIteams(res.data.results)
-      //   console.log(res.data);
-      //   return <Redirect push to="/pages/search_result" />;
-      // })
       .catch((err) => console.error(err));
   };
 
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
-
+  console.log(SearchIteams);
   return (
-    <Fragment>
+    <SearchProvider value={SearchIteams}>
       <Navwrapper>
         <Container>
           <Navbar expand="lg">
@@ -74,8 +75,8 @@ const Navbars = (props) => {
           </Navbar>
         </Container>
       </Navwrapper>
-      <MoviesLists moviesItems={SearchIteams} />
-    </Fragment>
+      {props.children}
+    </SearchProvider>
   );
 };
 
