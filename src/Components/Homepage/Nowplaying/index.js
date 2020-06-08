@@ -3,6 +3,7 @@ import axios from "axios";
 import MoviesLists from "../../Commons/MoviesLists";
 import { tmdb_api_key, tmdb_api_url } from "./../../../config";
 import Wrapper from "../../Wrapper";
+import Notfound from "../../Notfound";
 
 /**
  * @author
@@ -19,7 +20,6 @@ const Nowplaying = (props) => {
         `${tmdb_api_url}/movie/now_playing?api_key=${tmdb_api_key}&language=en-US&page=${currentPage}`
       )
       .then((res) => {
-        console.log(res.data);
         setTotalPages(res.data.total_pages);
         setMovieLists(res.data.results);
       })
@@ -45,7 +45,11 @@ const Nowplaying = (props) => {
   return (
     <Wrapper {...props}>
       <div className="mb-5 mt-5">
-        <MoviesLists moviesItems={movieLists} />
+        {movieLists.length > 0 ? (
+          <MoviesLists moviesItems={movieLists} />
+        ) : (
+          <Notfound />
+        )}
       </div>
     </Wrapper>
   );

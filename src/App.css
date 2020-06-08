@@ -44,3 +44,10 @@
 .col {
   display: flex;
 }
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto;
+}

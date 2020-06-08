@@ -6,6 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
+import { useDebounce } from "use-debounce";
 
 /**
  * @author
@@ -13,31 +14,29 @@ import axios from "axios";
  **/
 
 const Navbars = (props) => {
-  console.log(props);
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
+  const [isSearching, setIsSearching] = useState(false);
+  const debouncedSearchTerm = useDebounce(searchkey, 500);
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+    } else {
+      submitHandle();
+    }
+  }, []);
 
   const submitHandle = (evt) => {
     evt.preventDefault();
-
-    axios
-      .get(
-        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${searchkey}`
-      )
-      .then((res) => {
-        props.history.push({
-          pathname: "/search",
-          search: `?q=${searchkey}`,
-          state: { moviesItems: res.data.results },
-        });
-      })
-      .catch((err) => console.error(err));
+    props.history.push({
+      pathname: "/search",
+      search: `?q=${searchkey}`,
+    });
   };
 
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
-  console.log(SearchIteams);
   return (
     <Navwrapper>
       <Container>

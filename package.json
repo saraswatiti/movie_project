@@ -22,7 +22,9 @@
     "react-slick": "^0.25.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.1.0",
-    "styled-loaders-react": "^1.1.0"
+    "styled-loaders-react": "^1.1.0",
+    "throttle-debounce": "^2.1.0",
+    "use-debounce": "^3.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -34,7 +34,7 @@ const Homepege = (props) => {
         `${tmdb_api_url}/movie/top_rated?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
     ]);
-    console.log(datas[1].data.results);
+    console.log(datas);
     setnowPlaying(datas[0].data.results);
     setPopular(datas[1].data.results);
     settopRate(datas[2].data.results);
@@ -59,7 +59,9 @@ const Homepege = (props) => {
             </Link>
           </div>
           <MoviesSlider movies={popular} />
-
+          <div className="clearfix mt-5 mb-2">
+            <h2 className="float-left">Most Popular</h2>
+          </div>
           <MoviesLists moviesItems={topRate} />
         </Container>
       </BannerWrapper>
