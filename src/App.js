@@ -23,7 +23,6 @@ function App(props) {
           <Switch>
             <Route path="/" exact component={Homepage} />
             <Route path="/movies/:id" component={SinglePage} />
-
             <Route path="/nowplaying" component={Nowplaying} />
             <Route path="/pages/nowplay_grid" component={Nowplaygrid} />
             <Route path="/search" component={SearchResult} />

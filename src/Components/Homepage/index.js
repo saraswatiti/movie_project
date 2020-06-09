@@ -3,11 +3,12 @@ import style from "styled-components";
 import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import axios from "axios";
 import MoviesLists from "../Commons/MoviesLists";
-import { Row, Container } from "react-bootstrap";
+import { Row, Container, Button } from "react-bootstrap";
 import Wrapper from "../Wrapper";
 import MoviesSlider from "../Commons/MoviesSlider";
 import { BannerWrapper } from "./Nowplaying/style";
 import { Link } from "react-router-dom";
+import { SectionWrapper } from "../Homepage/style";
 
 /**
  * @author
@@ -40,6 +41,9 @@ const Homepege = (props) => {
     settopRate(datas[2].data.results);
     setNowplayGrid(datas[0].data.results);
   };
+  const handleClick = () => {
+    props.history.push("/nowplaying");
+  };
 
   return (
     <Wrapper {...props}>
@@ -62,7 +66,14 @@ const Homepege = (props) => {
           <div className="clearfix mt-5 mb-2">
             <h2 className="float-left">Most Popular</h2>
           </div>
-          <MoviesLists moviesItems={topRate} />
+          {Array.isArray(topRate) ? (
+            <SectionWrapper>
+              <MoviesLists moviesItems={topRate.slice(0, 8)} />
+              <Button onClick={handleClick}>Load More</Button>
+            </SectionWrapper>
+          ) : (
+            <MoviesLists moviesItems={topRate} />
+          )}
         </Container>
       </BannerWrapper>
     </Wrapper>

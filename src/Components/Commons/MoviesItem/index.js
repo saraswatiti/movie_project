@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Card, Figure } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 /**
  * @author
@@ -25,6 +26,9 @@ const MoviesItem = ({ movie }) => {
             <h3>{movie.title}</h3>
             <div className="movie-content">
               <span>{getYear(movie.release_date)}</span>
+              <span className="float-right">
+                <FaHeart />
+              </span>
             </div>
           </Card.Body>
         </Link>

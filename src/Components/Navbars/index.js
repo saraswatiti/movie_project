@@ -7,6 +7,7 @@ import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
 import { useDebounce } from "use-debounce";
+import { FaUserLock } from "react-icons/fa";
 
 /**
  * @author
@@ -68,6 +69,9 @@ const Navbars = (props) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
+              <Link to="/">
+                <FaUserLock />
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
