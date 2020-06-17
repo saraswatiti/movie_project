@@ -12,5 +12,10 @@ button{
     margin:20px 0 50px;
     font-family: "Lora", serif; 
     font-weight:600;
+} 
+`;
+export const RegistorWrapper = style.div`
+svg{
+    font-size:16px;
 }
 `;

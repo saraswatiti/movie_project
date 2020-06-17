@@ -8,6 +8,7 @@ import Search from "../Search";
 import axios from "axios";
 import { useDebounce } from "use-debounce";
 import { FaUserLock } from "react-icons/fa";
+import { RegistorWrapper } from "../Homepage/style";
 
 /**
  * @author
@@ -18,14 +19,14 @@ const Navbars = (props) => {
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
   const [isSearching, setIsSearching] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchkey, 500);
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-    } else {
-      submitHandle();
-    }
-  }, []);
+  // const debouncedSearchTerm = useDebounce(searchkey, 500);
+  // useEffect(() => {
+  //   if (debouncedSearchTerm) {
+  //     setIsSearching(true);
+  //   } else {
+  //     submitHandle();
+  //   }
+  // }, []);
 
   const submitHandle = (evt) => {
     evt.preventDefault();
@@ -70,7 +71,9 @@ const Navbars = (props) => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Link to="/">
-                <FaUserLock />
+                <RegistorWrapper>
+                  <FaUserLock />
+                </RegistorWrapper>
               </Link>
             </Nav>
           </Navbar.Collapse>

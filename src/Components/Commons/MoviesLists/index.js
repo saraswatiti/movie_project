@@ -8,6 +8,7 @@ import MoviesItem from "../MoviesItem";
  **/
 
 const MoviesLists = ({ moviesItems }) => {
+  console.log(moviesItems);
   return (
     <Fragment>
       <Container>
