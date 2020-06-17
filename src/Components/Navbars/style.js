@@ -3,7 +3,7 @@ import style from "styled-components";
 export const Navwrapper = style.div`
 background-color:#FBB124;
 font-family: "Lora", serif;
-form{
+.search-section{
     background-color:#fff;
     border-radius:100px;
     margin-left:40px;

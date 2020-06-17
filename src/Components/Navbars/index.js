@@ -7,8 +7,9 @@ import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
 import { useDebounce } from "use-debounce";
-import { FaUserLock } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 import { RegistorWrapper } from "../Homepage/style";
+import Login from "../Pages/Login";
 
 /**
  * @author
@@ -16,6 +17,7 @@ import { RegistorWrapper } from "../Homepage/style";
  **/
 
 const Navbars = (props) => {
+  const [popUp, setPopUp] = useState(false);
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
   const [isSearching, setIsSearching] = useState(false);
@@ -38,6 +40,9 @@ const Navbars = (props) => {
 
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
+  };
+  const toggle = () => {
+    setPopUp(true);
   };
   return (
     <Navwrapper>
@@ -70,11 +75,12 @@ const Navbars = (props) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Link to="/">
+              <Link to="/" onClick={toggle}>
                 <RegistorWrapper>
-                  <FaUserLock />
+                  <FaLock />
                 </RegistorWrapper>
               </Link>
+              {popUp ? <Login closeBtn={toggle} /> : null}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

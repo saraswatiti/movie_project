@@ -15,7 +15,16 @@ button{
 } 
 `;
 export const RegistorWrapper = style.div`
+    background:#000;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    margin-top: 8px;
 svg{
-    font-size:16px;
+    font-size:13px;
+    color:#fff;
 }
 `;
