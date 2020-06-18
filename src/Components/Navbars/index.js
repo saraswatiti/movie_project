@@ -41,8 +41,11 @@ const Navbars = (props) => {
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
-  const toggle = () => {
+  const openModel = () => {
     setPopUp(true);
+  };
+  const closeModel = () => {
+    setPopUp(false);
   };
   return (
     <Navwrapper>
@@ -75,12 +78,12 @@ const Navbars = (props) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Link to="/" onClick={toggle}>
+              <Link to="/" onClick={openModel}>
                 <RegistorWrapper>
                   <FaLock />
                 </RegistorWrapper>
               </Link>
-              {popUp ? <Login closeBtn={toggle} /> : null}
+              {popUp ? <Login closeModel={closeModel} /> : null}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

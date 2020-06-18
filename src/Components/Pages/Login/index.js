@@ -6,14 +6,14 @@ import { PopUpSection, PopUpWrapper } from "./style";
  * @function Login
  **/
 
-const Login = ({ closeBtn }) => {
-  closeBtn = () => {
-    window.location.reload();
-  };
+const Login = ({ closeModel }) => {
+  // closeBtn = () => {
+  //   window.location.reload();
+  // };
   return (
     <PopUpSection>
       <PopUpWrapper>
-        <a href="/" onclick={closeBtn}>
+        <a href="javascript:void(0);" onClick={closeModel}>
           <FaWindowClose />
         </a>
         <form>
