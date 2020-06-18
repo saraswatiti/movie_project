@@ -78,11 +78,11 @@ const Navbars = (props) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Link to="/" onClick={openModel}>
+              <a href="javascript:void(0);" onClick={openModel}>
                 <RegistorWrapper>
                   <FaLock />
                 </RegistorWrapper>
-              </Link>
+              </a>
               {popUp ? <Login closeModel={closeModel} /> : null}
             </Nav>
           </Navbar.Collapse>
