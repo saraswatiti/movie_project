@@ -12,6 +12,7 @@ import SearchResult from "./Components/Pages/SearchResult";
 import Nowplaying from "./Components/Homepage/Nowplaying";
 import ForgetPws from "./Components/Pages/ForgetPws";
 import SignUp from "./Components/Pages/SignUp";
+import UserPortfolio from "./Components/Pages/UserPortfolio";
 const Homepage = React.lazy(() => import("./Components/Homepage"));
 const SinglePage = React.lazy(() => import("./Components/SinglePage"));
 function App(props) {
@@ -30,6 +31,7 @@ function App(props) {
             <Route path="/search" component={SearchResult} />
             <Route path="/password-change" component={ForgetPws} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/User-login-page" component={UserPortfolio} />
           </Switch>
         </React.Suspense>
         <Footer />

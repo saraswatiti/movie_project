@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDebounce } from "use-debounce";
 import { FaLock } from "react-icons/fa";
 import { RegistorWrapper } from "../Homepage/style";
+import Login from "../Pages/Login";
 
 /**
  * @author
@@ -16,10 +17,10 @@ import { RegistorWrapper } from "../Homepage/style";
  **/
 
 const Navbars = (props) => {
+  const [popUp, setPopUp] = useState(false);
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
   const [isSearching, setIsSearching] = useState(false);
-
   // const debouncedSearchTerm = useDebounce(searchkey, 500);
   // useEffect(() => {
   //   if (debouncedSearchTerm) {
@@ -40,16 +41,13 @@ const Navbars = (props) => {
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
-  const handleLogin = async (e) => {
+  const openModel = (e) => {
     e.preventDefault();
-    const res = await axios.get(
-      `${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`
-    );
-    console.log(res);
-    const { token } = res.data;
-    console.log(token);
-
-    window.location = `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://saraswatiti.github.io/movie_project/#/`;
+    setPopUp(true);
+  };
+  const closeModel = (e) => {
+    e.preventDefault();
+    setPopUp(false);
   };
   return (
     <Navwrapper>
@@ -82,11 +80,12 @@ const Navbars = (props) => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <a href="#" onClick={handleLogin}>
+              <a href="#" onClick={openModel}>
                 <RegistorWrapper>
                   <FaLock />
                 </RegistorWrapper>
               </a>
+              {popUp ? <Login closeModel={closeModel} /> : null}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

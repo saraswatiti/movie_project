@@ -9,7 +9,6 @@ export const FormWrap = style.div`
         margin:0 auto 15px;
         text-align:center;
     }
-   
     input{
         display:block;
         width:100%;
