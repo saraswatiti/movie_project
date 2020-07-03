@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDebounce } from "use-debounce";
 import { FaLock } from "react-icons/fa";
 import { RegistorWrapper } from "../Homepage/style";
+const qs = require("qs");
 
 /**
  * @author
@@ -19,6 +20,7 @@ const Navbars = (props) => {
   const [SearchIteams, setSearchIteams] = useState([]);
   const [searchkey, setSearchKey] = useState();
   const [isSearching, setIsSearching] = useState(false);
+  const [reqToken, setReqToken] = useState(true);
 
   // const debouncedSearchTerm = useDebounce(searchkey, 500);
   // useEffect(() => {
@@ -28,6 +30,17 @@ const Navbars = (props) => {
   //     submitHandle();
   //   }
   // }, []);
+  useEffect(() => {
+    let queryObj = qs.parse({
+      ignoreQueryPrefix: true,
+    });
+    const ObjToken = axios.post(
+      `https://api.themoviedb.org/3/authentication/session/new?api_key=8dcc478bc8ac0518dd5d7b133c69b56b`,
+      { request_token: queryObj.request_token }
+    );
+    setReqToken(false);
+    console.log(ObjToken);
+  }, [reqToken]);
 
   const submitHandle = (evt) => {
     evt.preventDefault();
@@ -46,10 +59,9 @@ const Navbars = (props) => {
       `${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`
     );
     console.log(res);
-    const { token } = res.data;
-    console.log(token);
-
-    window.location = `https://www.themoviedb.org/authenticate/${token}?redirect_to=https://saraswatiti.github.io/movie_project/#/`;
+    const { request_token } = res.data;
+    console.log(request_token);
+    window.location = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://saraswatiti.github.io/movie_project/#/`;
   };
   return (
     <Navwrapper>
