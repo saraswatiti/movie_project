@@ -6,9 +6,9 @@ import { Link, Redirect } from "react-router-dom";
 import { tmdb_api_url, tmdb_api_key } from "../../config";
 import Search from "../Search";
 import axios from "axios";
-import { useDebounce } from "use-debounce";
 import { FaLock } from "react-icons/fa";
 import { RegistorWrapper } from "../Homepage/style";
+import Debounce from "../../Debounce";
 const qs = require("qs");
 
 /**
@@ -17,30 +17,23 @@ const qs = require("qs");
  **/
 
 const Navbars = (props) => {
-  const [SearchIteams, setSearchIteams] = useState([]);
-  const [searchkey, setSearchKey] = useState();
+  // const [SearchIteams, setSearchIteams] = useState([]);
+  const [searchkey, setSearchKey] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [reqToken, setReqToken] = useState(true);
 
-  // const debouncedSearchTerm = useDebounce(searchkey, 500);
-  // useEffect(() => {
-  //   if (debouncedSearchTerm) {
-  //     setIsSearching(true);
-  //   } else {
-  //     submitHandle();
-  //   }
-  // }, []);
+  const debouncedSearchTerm = Debounce(searchkey, 500);
   useEffect(() => {
-    let queryObj = qs.parse({
-      ignoreQueryPrefix: true,
-    });
-    const ObjToken = axios.post(
-      `https://api.themoviedb.org/3/authentication/session/new?api_key=8dcc478bc8ac0518dd5d7b133c69b56b`,
-      { request_token: queryObj.request_token }
-    );
-    setReqToken(false);
-    console.log(ObjToken);
-  }, [reqToken]);
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      inputHandle(debouncedSearchTerm).then((results) => {
+        setIsSearching(false);
+        setSearchKey(results);
+      });
+    } else {
+      setSearchKey([]);
+    }
+  }, [debouncedSearchTerm]);
 
   const submitHandle = (evt) => {
     evt.preventDefault();
@@ -53,6 +46,20 @@ const Navbars = (props) => {
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
+
+  //for login
+  useEffect(() => {
+    let queryObj = qs.parse({
+      ignoreQueryPrefix: true,
+    });
+    const ObjToken = axios.post(
+      `https://api.themoviedb.org/3/authentication/session/new?api_key=8dcc478bc8ac0518dd5d7b133c69b56b`,
+      { request_token: queryObj.request_token }
+    );
+    setReqToken(false);
+    console.log(ObjToken);
+  }, [reqToken]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const res = await axios.get(
@@ -72,7 +79,9 @@ const Navbars = (props) => {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Search submitHandle={submitHandle} inputHandle={inputHandle} />
+            {isSearching && (
+              <Search submitHandle={submitHandle} inputHandle={inputHandle} />
+            )}
 
             <Nav className="ml-auto">
               <Link to="/" className="nav-link">
