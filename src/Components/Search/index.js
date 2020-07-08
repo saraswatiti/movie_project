@@ -8,6 +8,7 @@ import { Form, FormControl } from "react-bootstrap";
  **/
 
 const Search = ({ submitHandle, inputHandle }) => {
+
   return (
     <Fragment>
       <Form inline onSubmit={submitHandle} className="search-section">

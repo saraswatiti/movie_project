@@ -19,15 +19,18 @@ const Login = ({ closeModel: closeModel, ...props }) => {
   const onChangeUserName = (e) => {
     setUserName(e.target.value);
   };
+
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     axios
       .get(`${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`)
       .then((res) => console.log(res.data));
   };
+
   return (
     <PopUpSection>
       <PopUpWrapper>

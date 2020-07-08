@@ -41,14 +41,17 @@ const Navbars = (props) => {
   const inputHandle = (evt) => {
     setSearchKey(evt.target.value);
   };
+
   const openModel = (e) => {
     e.preventDefault();
     setPopUp(true);
   };
+
   const closeModel = (e) => {
     e.preventDefault();
     setPopUp(false);
   };
+
   return (
     <Navwrapper>
       <Container>

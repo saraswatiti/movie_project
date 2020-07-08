@@ -9,12 +9,15 @@ import { FaHeart } from "react-icons/fa";
  **/
 
 const MoviesItem = ({ movie }) => {
+
   const getYear = (date) => {
     if (!date) {
       return;
     }
+
     return date.split("-")[0];
   };
+
   return (
     <Fragment>
       <Card>

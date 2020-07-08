@@ -93,7 +93,7 @@ const Navbars = (props) => {
               inputHandle={inputHandle}
               value={searchkey}
             />
-            {isSearching && <SearchGrid movies={movieLists} />}
+            {movieLists.length > 0 && <SearchGrid movies={movieLists} />}
 
             <Nav className="ml-auto">
               <Link to="/" className="nav-link">

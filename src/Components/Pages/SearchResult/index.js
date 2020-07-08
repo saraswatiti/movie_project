@@ -13,30 +13,26 @@ const qs = require("qs");
 
 const SearchResult = (props) => {
   const [movieLists, setMovieLists] = useState([]);
+
   useEffect(() => {
     let queryObj = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-    console.log(queryObj);
     if (!queryObj.q) {
       props.history.push("/");
       return;
     }
-    axios
-      .get(
-        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${queryObj.q}`
-      )
+    axios.get(`${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${queryObj.q}`)
       .then((res) => setMovieLists(res.data.results))
       .catch((err) => console.error(err));
   }, [props.location.search]);
 
-  console.log(props);
   return (
     <Wrapper {...props}>
       <div className="mb-5 mt-5">
         {movieLists.length > 0 ? (
           <MoviesLists moviesItems={movieLists} />
         ) : (
-          <Notfound />
-        )}
+            <Notfound />
+          )}
       </div>
     </Wrapper>
   );

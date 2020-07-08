@@ -9,6 +9,7 @@ import { FormWrap } from "./style";
  **/
 
 const ForgetPws = (props) => {
+
   return (
     <Wrapper {...props}>
       <Container>

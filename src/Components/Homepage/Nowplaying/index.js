@@ -14,6 +14,7 @@ const Nowplaying = (props) => {
   const [movieLists, setMovieLists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     axios
       .get(
@@ -25,6 +26,7 @@ const Nowplaying = (props) => {
       })
       .catch((err) => console.error(err));
   }, [currentPage]);
+
   const nextHandler = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -42,14 +44,15 @@ const Nowplaying = (props) => {
   const pageItem = (rangeWithDot) => {
     setCurrentPage(rangeWithDot);
   };
+
   return (
     <Wrapper {...props}>
       <div className="mb-5 mt-5">
         {movieLists.length > 0 ? (
           <MoviesLists moviesItems={movieLists} />
         ) : (
-          <Notfound />
-        )}
+            <Notfound />
+          )}
       </div>
     </Wrapper>
   );

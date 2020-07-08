@@ -20,9 +20,11 @@ const Homepege = (props) => {
   const [popular, setPopular] = useState([]);
   const [topRate, settopRate] = useState([]);
   const [NowplayGrid, setNowplayGrid] = useState([]);
+
   useEffect(() => {
     getAllMovies();
   }, []);
+
   const getAllMovies = async () => {
     const datas = await axios.all([
       axios.get(
@@ -35,12 +37,12 @@ const Homepege = (props) => {
         `${tmdb_api_url}/movie/top_rated?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
     ]);
-    console.log(datas);
     setnowPlaying(datas[0].data.results);
     setPopular(datas[1].data.results);
     settopRate(datas[2].data.results);
     setNowplayGrid(datas[0].data.results);
   };
+
   const handleClick = () => {
     props.history.push("/nowplaying");
   };
@@ -72,8 +74,8 @@ const Homepege = (props) => {
               <Button onClick={handleClick}>Load More</Button>
             </SectionWrapper>
           ) : (
-            <MoviesLists moviesItems={topRate} />
-          )}
+              <MoviesLists moviesItems={topRate} />
+            )}
         </Container>
       </BannerWrapper>
     </Wrapper>

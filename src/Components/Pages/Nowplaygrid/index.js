@@ -15,6 +15,7 @@ const Nowplaygrid = ({ Props }) => {
   const [movieLists, setMovieLists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
   useEffect(() => {
     Axios.get(
       `${tmdb_api_url}/movie/now_playing?api_key=${tmdb_api_key}&language=en-US&page=${currentPage}`
@@ -26,6 +27,7 @@ const Nowplaygrid = ({ Props }) => {
       })
       .catch((err) => console.error(err));
   }, [currentPage]);
+
   const nextHandler = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -43,6 +45,7 @@ const Nowplaygrid = ({ Props }) => {
   const pageItem = (rangeWithDot) => {
     setCurrentPage(rangeWithDot);
   };
+
   return (
     <BannerWrapper>
       <Container className="mt-5">

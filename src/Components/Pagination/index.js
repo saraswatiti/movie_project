@@ -18,7 +18,7 @@ const Pagination = ({ totalPages, pageItem, currentPage }) => {
       ranges.push(i);
     }
   }
-  console.log(ranges);
+
   for (let i of ranges) {
     if (l) {
       if (i - l === 2) {
@@ -30,7 +30,6 @@ const Pagination = ({ totalPages, pageItem, currentPage }) => {
     rangeWithDot.push(i);
     l = i;
   }
-  console.log(rangeWithDot);
 
   return (
     <ul className="pagination">

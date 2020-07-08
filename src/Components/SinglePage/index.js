@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { tmdb_api_url, tmdb_api_key } from "../../../src/config";
 import { Container, Row, Col } from "react-bootstrap";
 import { FcRating, FcLike } from "react-icons/fc";
@@ -12,11 +12,9 @@ import Wrapper from "../Wrapper";
 
 const SinglePage = (props) => {
   const [SingleMovie, setSingleMovie] = useState({});
+
   useEffect(() => {
-    Axios.get(
-      `
-      ${tmdb_api_url}/movie/${props.match.params.id}?api_key=${tmdb_api_key}&language=en-US`
-    )
+    axios.get(`${tmdb_api_url}/movie/${props.match.params.id}?api_key=${tmdb_api_key}&language=en-US`)
       .then((res) => setSingleMovie(res.data))
       .catch((err) => console.error(err));
   }, [props.match.params.id]);

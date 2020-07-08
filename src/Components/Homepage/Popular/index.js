@@ -11,6 +11,7 @@ import MoviesSlider from "../../Commons/MoviesSlider";
  **/
 
 const Popular = ({ states }) => {
+
   return (
     <Fragment>
       <BannerWrapper>

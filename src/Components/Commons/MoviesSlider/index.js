@@ -10,6 +10,7 @@ import { Col } from "react-bootstrap";
  **/
 
 const MoviesSlider = ({ movies }) => {
+
   const settings = {
     dots: false,
     infinite: true,
@@ -18,6 +19,7 @@ const MoviesSlider = ({ movies }) => {
     slidesToScroll: 1,
     arrow: true,
   };
+
   return (
     <Fragment>
       <Slider {...settings}>

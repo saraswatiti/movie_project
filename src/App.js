@@ -15,6 +15,7 @@ import SignUp from "./Components/Pages/SignUp";
 import UserPortfolio from "./Components/Pages/UserPortfolio";
 const Homepage = React.lazy(() => import("./Components/Homepage"));
 const SinglePage = React.lazy(() => import("./Components/SinglePage"));
+
 function App(props) {
   return (
     <div className="App">

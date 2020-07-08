@@ -15,24 +15,24 @@ const SignUp = (props) => {
   const [password, setPassword] = useState();
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+
   const onChangeUserName = (e) => {
     setUserName(e.target.value);
   };
+
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const handleRegistor = (e) => {
     e.preventDefault();
     setMessage("");
     setSuccessful(false);
-    axios
-      .post(
-        `${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`,
-        { userName, password, email }
-      )
+    axios.post(`${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`, { userName, password, email })
       .then((res) => {
         console.log(res.data);
         setSuccessful(true);
@@ -43,6 +43,7 @@ const SignUp = (props) => {
         setSuccessful(false);
       });
   };
+
   return (
     <Wrapper {...props}>
       <Container>
