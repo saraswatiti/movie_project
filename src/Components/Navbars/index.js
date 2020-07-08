@@ -9,6 +9,8 @@ import axios from "axios";
 import { FaLock } from "react-icons/fa";
 import { RegistorWrapper } from "../Homepage/style";
 import Debounce from "../../Debounce";
+import MoviesLists from "../Commons/MoviesLists";
+import SearchGrid from "../Commons/SearchGrid";
 const qs = require("qs");
 
 /**
@@ -17,7 +19,7 @@ const qs = require("qs");
  **/
 
 const Navbars = (props) => {
-  // const [SearchIteams, setSearchIteams] = useState([]);
+  const [movieLists, setMovieLists] = useState([]);
   const [searchkey, setSearchKey] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [reqToken, setReqToken] = useState(true);
@@ -26,15 +28,25 @@ const Navbars = (props) => {
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
-      inputHandle(debouncedSearchTerm).then((results) => {
+      searchMovies(debouncedSearchTerm).then((results) => {
         setIsSearching(false);
-        setSearchKey(results);
+        setMovieLists(results);
       });
     } else {
-      setSearchKey([]);
+      setMovieLists([]);
     }
   }, [debouncedSearchTerm]);
-
+  const searchMovies = async (search) => {
+    console.log(search);
+    try {
+      const result = await axios.get(
+        `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${search}`
+      );
+      return result.data.results;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const submitHandle = (evt) => {
     evt.preventDefault();
     props.history.push({
@@ -57,7 +69,6 @@ const Navbars = (props) => {
       { request_token: queryObj.request_token }
     );
     setReqToken(false);
-    console.log(ObjToken);
   }, [reqToken]);
 
   const handleLogin = async (e) => {
@@ -65,9 +76,7 @@ const Navbars = (props) => {
     const res = await axios.get(
       `${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`
     );
-    console.log(res);
     const { request_token } = res.data;
-    console.log(request_token);
     window.location = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://saraswatiti.github.io/movie_project/#/`;
   };
   return (
@@ -79,9 +88,12 @@ const Navbars = (props) => {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {isSearching && (
-              <Search submitHandle={submitHandle} inputHandle={inputHandle} />
-            )}
+            <Search
+              submitHandle={submitHandle}
+              inputHandle={inputHandle}
+              value={searchkey}
+            />
+            {isSearching && <SearchGrid movies={movieLists} />}
 
             <Nav className="ml-auto">
               <Link to="/" className="nav-link">

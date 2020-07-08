@@ -21,3 +21,30 @@ font-family: "Lora", serif;
 }
 
 `;
+
+export const SearchGrids = style.div`
+
+position: absolute;
+top: 50px;
+left:0;
+z-index:9;
+ul{
+padding: 0;
+background: #fff;
+list-style: none;
+box-shadow: 0 0 1px rgba(0,0,0,0.2); 
+overflow-y: scroll;
+height: 300px; 
+}
+figure{
+    margin-right:15px;
+}
+img{
+    width:150px;
+}
+li{
+    display:flex;
+    font-size:20px;
+    align-items:center;
+}
+`;
