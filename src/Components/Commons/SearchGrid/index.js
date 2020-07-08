@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { SearchGrids } from "../../Navbars/style";
 
 /**
@@ -12,15 +13,17 @@ const SearchGrid = ({ movies }) => {
       <ul>
         {movies.map((movie) => {
           return (
-            <li key={movie.id}>
-              <figure>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              </figure>
-              {movie.title}
-            </li>
+            <Link to={`/movies/${movie.id}`}>
+              <li key={movie.id}>
+                <figure>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </figure>
+                {movie.title}
+              </li>
+            </Link>
           );
         })}
       </ul>
