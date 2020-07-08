@@ -25,6 +25,7 @@ const Navbars = (props) => {
   const [reqToken, setReqToken] = useState(true);
 
   const debouncedSearchTerm = Debounce(searchkey, 500);
+
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsSearching(true);
@@ -36,8 +37,8 @@ const Navbars = (props) => {
       setMovieLists([]);
     }
   }, [debouncedSearchTerm]);
+
   const searchMovies = async (search) => {
-    console.log(search);
     try {
       const result = await axios.get(
         `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${search}`
@@ -47,6 +48,7 @@ const Navbars = (props) => {
       console.log(error);
     }
   };
+
   const submitHandle = (evt) => {
     evt.preventDefault();
     props.history.push({
@@ -61,11 +63,9 @@ const Navbars = (props) => {
 
   //for login
   useEffect(() => {
-    let queryObj = qs.parse({
-      ignoreQueryPrefix: true,
-    });
-    const ObjToken = axios.post(
-      `https://api.themoviedb.org/3/authentication/session/new?api_key=8dcc478bc8ac0518dd5d7b133c69b56b`,
+    let queryObj = qs.parse({ ignoreQueryPrefix: true });
+
+    const ObjToken = axios.post(`https://api.themoviedb.org/3/authentication/session/new?api_key=8dcc478bc8ac0518dd5d7b133c69b56b`,
       { request_token: queryObj.request_token }
     );
     setReqToken(false);
@@ -79,6 +79,7 @@ const Navbars = (props) => {
     const { request_token } = res.data;
     window.location = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://saraswatiti.github.io/movie_project/#/`;
   };
+
   return (
     <Navwrapper>
       <Container>
@@ -93,6 +94,7 @@ const Navbars = (props) => {
               inputHandle={inputHandle}
               value={searchkey}
             />
+
             {movieLists.length > 0 && <SearchGrid movies={movieLists} />}
 
             <Nav className="ml-auto">

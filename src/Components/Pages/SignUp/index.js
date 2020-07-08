@@ -34,7 +34,6 @@ const SignUp = (props) => {
     setSuccessful(false);
     axios.post(`${tmdb_api_url}/authentication/token/new?api_key=${tmdb_api_key}`, { userName, password, email })
       .then((res) => {
-        console.log(res.data);
         setSuccessful(true);
       })
       .catch((err) => {

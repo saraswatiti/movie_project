@@ -24,7 +24,7 @@ const MoviesSlider = ({ movies }) => {
     <Fragment>
       <Slider {...settings}>
         {movies.map((movie) => (
-          <Col>
+          <Col key={movie.id}>
             <MoviesItem movie={movie} />
           </Col>
         ))}

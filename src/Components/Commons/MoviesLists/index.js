@@ -14,7 +14,7 @@ const MoviesLists = ({ moviesItems }) => {
       <Container>
         <Row>
           {moviesItems.map((movie) => (
-            <Col className="col-3">
+            <Col className="col-3" key={movie.id}>
               <MoviesItem movie={movie} />
             </Col>
           ))}

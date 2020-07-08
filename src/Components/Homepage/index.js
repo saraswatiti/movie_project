@@ -37,6 +37,7 @@ const Homepege = (props) => {
         `${tmdb_api_url}/movie/top_rated?api_key=${tmdb_api_key}&language=en-US&page=1`
       ),
     ]);
+
     setnowPlaying(datas[0].data.results);
     setPopular(datas[1].data.results);
     settopRate(datas[2].data.results);
