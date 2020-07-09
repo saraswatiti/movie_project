@@ -15,7 +15,7 @@ const SearchResult = (props) => {
   const [movieLists, setMovieLists] = useState([]);
   useEffect(() => {
     let queryObj = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-    console.log(queryObj);
+
     if (!queryObj.q) {
       props.history.push("/");
       return;

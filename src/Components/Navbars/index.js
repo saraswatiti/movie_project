@@ -37,7 +37,6 @@ const Navbars = (props) => {
     }
   }, [debouncedSearchTerm]);
   const searchMovies = async (search) => {
-    console.log(search);
     try {
       const result = await axios.get(
         `${tmdb_api_url}/search/movie?api_key=${tmdb_api_key}&query=${search}`
@@ -99,7 +98,7 @@ const Navbars = (props) => {
               <Link to="/" className="nav-link">
                 Home
               </Link>
-              <Link to="/movies" className="nav-link">
+              <Link to="/Genre" className="nav-link">
                 movies
               </Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">

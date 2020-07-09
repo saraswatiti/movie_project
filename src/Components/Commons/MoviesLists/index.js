@@ -8,13 +8,12 @@ import MoviesItem from "../MoviesItem";
  **/
 
 const MoviesLists = ({ moviesItems }) => {
-  console.log(moviesItems);
   return (
     <Fragment>
       <Container>
         <Row>
           {moviesItems.map((movie) => (
-            <Col className="col-3">
+            <Col className="col-lg-3 col-sm-12">
               <MoviesItem movie={movie} />
             </Col>
           ))}
