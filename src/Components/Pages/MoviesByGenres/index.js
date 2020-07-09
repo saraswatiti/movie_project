@@ -15,22 +15,23 @@ const MoviesByGenres = ({ catId }) => {
     axios
       .get(
         `
-  ${tmdb_api_url}/genre/movie/list?api_key=${tmdb_api_key}&with_genres=${catId}`
+ ${tmdb_api_url}/discover/movie?api_key=${tmdb_api_key}&with_genres=80`
       )
-      .then((res) => setGenresList(res.data.genres))
+      .then((res) => setGenresList(res.data.results))
       .catch((err) => console.error(err));
   }, []);
-  const SearchByCat = () => {
-    try {
-      const res = axios.get(
-        `
-  ${tmdb_api_url}/genre/movie/list?api_key=${tmdb_api_key}&with_genres=${catId}`
-      );
-      return res.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const SearchByCat = () => {
+  //   try {
+  //     const res = axios.get(
+  //       `
+  // ${tmdb_api_url}/discover/movie?api_key=${tmdb_api_key}&with_genres=80`
+  //     );
+  //     console.log(res.data);
+  //     return res.data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+
   return <MoviesLists moviesItems={genresList} />;
 };
 
