@@ -14,17 +14,22 @@ const Genre = (props) => {
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
 
-  useEffect(async () => {
-    try {
-      const genres = await genreService.getGenre();
-      setGenres(genres);
+  useEffect(() => {
+    async function loadGenre() {
+      try {
+        const genres = await genreService.getGenre();
+        setGenres(genres);
 
-      const movies = await genreService.getMovieByGenre(genres[0].id);
-      setMovies(movies);
+        const movies = await genreService.getMovieByGenre(genres[0].id);
+        setMovies(movies);
 
-    } catch (error) {
-      console.log(error)
+      } catch (error) {
+        console.log(error)
+      }
     }
+
+    loadGenre();
+
   }, []);
 
   const handleCat = async (currentId) => {
