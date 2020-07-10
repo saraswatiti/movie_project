@@ -16,10 +16,6 @@ const SearchResult = (props) => {
 
   useEffect(() => {
     let queryObj = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-<<<<<<< HEAD
-=======
-
->>>>>>> 218f01ae677ba5b2720b6d7e46ca1c68bc4118cc
     if (!queryObj.q) {
       props.history.push("/");
       return;
