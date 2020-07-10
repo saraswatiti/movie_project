@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Wrapper from "../../Wrapper";
 import { Container } from "react-bootstrap";
-import axios from "axios";
-import { tmdb_api_url, tmdb_api_key } from "../../../config";
-import { Link } from "react-router-dom";
 import { GenerWrapper } from "./style";
-import MoviesByGenres from "../MoviesByGenres";
+import * as genreService from '../../../services/genreService';
+import MoviesLists from "../../Commons/MoviesLists";
 
 /**
  * @author
@@ -14,19 +12,31 @@ import MoviesByGenres from "../MoviesByGenres";
 
 const Genre = (props) => {
   const [genres, setGenres] = useState([]);
-  const [catId, setCatId] = useState(null);
-  useEffect(() => {
-    axios
-      .get(
-        `
-    ${tmdb_api_url}/genre/movie/list?api_key=${tmdb_api_key}&language=en-US`
-      )
-      .then((res) => setGenres(res.data.genres))
-      .catch((err) => console.error(err));
+  const [movies, setMovies] = useState([]);
+
+  useEffect(async () => {
+    try {
+      const genres = await genreService.getGenre();
+      setGenres(genres);
+
+      const movies = await genreService.getMovieByGenre(genres[0].id);
+      setMovies(movies);
+
+    } catch (error) {
+      console.log(error)
+    }
   }, []);
-  const handleCat = (currentId) => {
-    setCatId(currentId);
-  };
+
+  const handleCat = async (currentId) => {
+    try {
+      const movies = await genreService.getMovieByGenre(currentId);
+      setMovies(movies);
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Wrapper {...props}>
       <Container>
@@ -36,15 +46,13 @@ const Genre = (props) => {
             {genres.map((genre) => {
               return (
                 <li key={genre.id}>
-                  <Link to={`genres/${genre.id}`} onClick={handleCat}>
-                    {genre.name}
-                  </Link>
+                  <button onClick={() => handleCat(genre.id)}>{genre.name}</button>
                 </li>
               );
             })}
           </ul>
         </GenerWrapper>
-        <MoviesByGenres catId={catId} />
+        <MoviesLists moviesItems={movies} />
       </Container>
     </Wrapper>
   );

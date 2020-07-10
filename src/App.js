@@ -35,7 +35,7 @@ function App(props) {
             <Route path="/password-change" component={ForgetPws} />
             <Route path="/signup" component={SignUp} />
             <Route path="/User-login-page" component={UserPortfolio} />
-            <Route path="/Genre" component={Genre} />
+            <Route path="/genre" component={Genre} />
             <Route path="genres/:id" component={MoviesByGenres} />
           </Switch>
         </React.Suspense>
