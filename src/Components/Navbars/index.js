@@ -101,7 +101,7 @@ const Navbars = (props) => {
               <Link to="/" className="nav-link">
                 Home
               </Link>
-              <Link to="/movies" className="nav-link">
+              <Link to="/Genre" className="nav-link">
                 movies
               </Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">

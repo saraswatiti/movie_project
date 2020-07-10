@@ -13,6 +13,8 @@ import Nowplaying from "./Components/Homepage/Nowplaying";
 import ForgetPws from "./Components/Pages/ForgetPws";
 import SignUp from "./Components/Pages/SignUp";
 import UserPortfolio from "./Components/Pages/UserPortfolio";
+import Genre from "./Components/Pages/Genre";
+import MoviesByGenres from "./Components/Pages/MoviesByGenres";
 const Homepage = React.lazy(() => import("./Components/Homepage"));
 const SinglePage = React.lazy(() => import("./Components/SinglePage"));
 
@@ -33,6 +35,8 @@ function App(props) {
             <Route path="/password-change" component={ForgetPws} />
             <Route path="/signup" component={SignUp} />
             <Route path="/User-login-page" component={UserPortfolio} />
+            <Route path="/Genre" component={Genre} />
+            <Route path="genres/:id" component={MoviesByGenres} />
           </Switch>
         </React.Suspense>
         <Footer />
