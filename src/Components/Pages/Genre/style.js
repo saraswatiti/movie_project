@@ -7,7 +7,7 @@ export const GenerWrapper = style.div`
     li{
         display:inline-block;
     }
-    li a{
+    li button{
         padding:3px 15px;
         background:#FBB124;
         color:#000;
@@ -16,5 +16,8 @@ export const GenerWrapper = style.div`
         margin:5px;
         display:inline-block;
         text-decoration:none;
+    }
+    button:focus{
+        outline:0;
     }
 `;

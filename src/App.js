@@ -6,9 +6,7 @@ import { CubeGrid } from "styled-loaders-react";
 import Footer from "./Components/Footer";
 import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 import Nowplaygrid from "./Components/Pages/Nowplaygrid";
-
 import SearchResult from "./Components/Pages/SearchResult";
-
 import Nowplaying from "./Components/Homepage/Nowplaying";
 import ForgetPws from "./Components/Pages/ForgetPws";
 import SignUp from "./Components/Pages/SignUp";
@@ -22,7 +20,6 @@ function App(props) {
   return (
     <div className="App">
       <HashRouter basename="/">
-        {/* <Header {...props} /> */}
         <React.Suspense
           fallback={<CubeGrid color="red" size="60px" duration="1.5s" />}
         >
